@@ -1,6 +1,8 @@
 FROM debian:jessie
 MAINTAINER Niclas Kühne <nk@plaxon.de>
 
+RUN apt-get update
+
 RUN echo "deb https://sernet-samba-public:Noo1oxe4zo@download.sernet.de/packages/samba/4.2/debian jessie main" >> /etc/apt/sources.list.d/sernet-samba-4.2.list
 RUN echo "deb-src https://sernet-samba-public:Noo1oxe4zo@download.sernet.de/packages/samba/4.2/debian jessie main" >> /etc/apt/sources.list.d/sernet-samba-4.2.list
 
