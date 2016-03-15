@@ -1,8 +1,6 @@
 FROM debian:jessie
 MAINTAINER Niclas Kühne <nk@plaxon.de>
 
-RUN apt-get -y update && apt-get -y upgrade
-
 RUN echo "deb https://sernet-samba-public:Noo1oxe4zo@download.sernet.de/packages/samba/4.2/debian jessie main" >> /etc/apt/sources.list.d/sernet-samba-4.2.list
 RUN echo "deb-src https://sernet-samba-public:Noo1oxe4zo@download.sernet.de/packages/samba/4.2/debian jessie main" >> /etc/apt/sources.list.d/sernet-samba-4.2.list
 
@@ -21,6 +19,7 @@ RUN mkdir -p /etc/my_init.d
 COPY samba_setup.sh /etc/my_init.d/
 
 # Add services
+RUN mkdir /etc/service
 RUN mkdir /etc/service/samba
 COPY samba_run.sh /etc/service/samba/run
 COPY samba_finish.sh /etc/service/samba/finish
