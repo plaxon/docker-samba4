@@ -4,7 +4,7 @@ MAINTAINER Niclas Kühne <nk@plaxon.de>
 # Default environment variables. Please overwrite!
 
 ENV SAMBA_REALM="samba.dom"
-ENV SAMBA_PASSWORD="test"
+ENV SAMBA_PASSWORD="UnsecurePassword!"
 ENV SAMBA_HOST_IP="10.10.10.247"
 ENV SAMBA_DNS_FORWARDER="10.10.10.254"
 
