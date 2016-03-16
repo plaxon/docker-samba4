@@ -26,7 +26,7 @@ SAMBA_OPTIONS=${SAMBA_OPTIONS:-}
 [ -n "$SAMBA_HOST_IP" ] && SAMBA_OPTIONS="$SAMBA_OPTIONS --host-ip=$SAMBA_HOST_IP"
 
 # Fix nameserver
-echo -e "search ${SAMBA_REALM}\nnameserver 127.0.0.1" > /etc/resolv.conf
+echo "search ${SAMBA_REALM}\nnameserver 127.0.0.1" > /etc/resolv.conf
 
 # Provision domain
 rm -f /etc/samba/smb.conf
