@@ -49,6 +49,7 @@ mv /etc/samba/smb.conf /var/lib/samba/private/smb.conf
 
 # Mark samba as setup
 touch /var/lib/samba/.setup
+exit 0
 
 # Setup only?
 [ -n "$SAMBA_SETUP_ONLY" ] && exit 127 || :
