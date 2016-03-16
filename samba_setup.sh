@@ -7,7 +7,7 @@ info () {
 }
 
 # Check if samba is setup
-[ -f /var/lib/samba/.setup ] && exit 0
+[ -f /var/lib/samba/.setup ] && /etc/my_init.d/samba_run.sh
 
 # Require $SAMBA_REALM to be set
 : "${SAMBA_REALM:?SAMBA_REALM needs to be set}"
@@ -49,7 +49,7 @@ mv /etc/samba/smb.conf /var/lib/samba/private/smb.conf
 
 # Mark samba as setup
 touch /var/lib/samba/.setup
-exit 0
+/etc/my_init.d/samba_run.sh
 
 # Setup only?
 [ -n "$SAMBA_SETUP_ONLY" ] && exit 127 || :

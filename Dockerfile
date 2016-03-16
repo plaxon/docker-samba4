@@ -36,12 +36,10 @@ RUN chown root:root /etc/my_init.d/samba_run.sh
 
 VOLUME ["/var/lib/samba"]
 
-RUN ["/etc/my_init.d/samba_setup.sh"]
+CMD ["/etc/my_init.d/samba_setup.sh"]
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-CMD ["/etc/my_init.d/samba_run.sh"]
 
 # Expose AD DC Ports
 EXPOSE 135/tcp
