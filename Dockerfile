@@ -33,7 +33,14 @@ COPY samba_setup.sh /etc/my_init.d/
 RUN mkdir /etc/service/samba
 COPY samba_run.sh /etc/service/samba/run
 COPY samba_finish.sh /etc/service/samba/finish
+RUN chmod +x /etc/service/samba/run
+RUN chmod +x /etc/service/samba/finish
+RUN chown root:root /etc/service/samba/run
+RUN chown root:root /etc/service/samba/finish
 
 VOLUME ["/var/lib/samba"]
 
 CMD ["/sbin/my_init"]
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
