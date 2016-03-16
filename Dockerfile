@@ -30,7 +30,6 @@ RUN mkdir -p /etc/my_init.d
 COPY samba_setup.sh /etc/my_init.d/
 
 # Add services
-RUN mkdir /etc/service
 RUN mkdir /etc/service/samba
 COPY samba_run.sh /etc/service/samba/run
 COPY samba_finish.sh /etc/service/samba/finish
