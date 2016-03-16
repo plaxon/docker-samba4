@@ -1,6 +1,13 @@
 FROM ubuntu:16.04
 MAINTAINER Niclas Kühne <nk@plaxon.de>
 
+# Default environment variables. Please overwrite!
+
+ENV SAMBA_REALM="samba.dom"
+ENV SAMBA_PASSWORD="test"
+ENV SAMBA_HOST_IP="10.10.10.247"
+ENV SAMBA_DNS_FORWARDER="10.10.10.254"
+
 RUN apt-get update && \
 	apt-get install -y \
         samba \
@@ -21,8 +28,11 @@ RUN export LANGUAGE=de_DE.UTF-8 && \
 # Add startup scripts
 RUN mkdir -p /etc/my_init.d
 COPY samba_setup.sh /etc/my_init.d/
+COPY samba_run.sh /etc/my_init.d/
 RUN chmod +x /etc/my_init.d/samba_setup.sh
 RUN chown root:root /etc/my_init.d/samba_setup.sh
+RUN chmod +x /etc/my_init.d/samba_run.sh
+RUN chown root:root /etc/my_init.d/samba_run.sh
 
 VOLUME ["/var/lib/samba"]
 
@@ -30,6 +40,8 @@ CMD ["/etc/my_init.d/samba_setup.sh"]
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+CMD ["/etc/my_init.d/samba_run.sh"]
 
 # Expose AD DC Ports
 EXPOSE 135/tcp
