@@ -1,4 +1,4 @@
-FROM phusion/baseimage-docker
+FROM phusion/baseimage
 MAINTAINER Niclas Kühne <nk@plaxon.de>
 
 RUN apt-get update && \
